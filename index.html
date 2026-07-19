@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta id="meta-desc" name="description" content="">
+<meta property="og:title" content="IKMeds — Seguridad farmacológica dental">
+<meta id="og-desc" property="og:description" content="IKMeds — seguridad farmacológica para tu consulta dental. Interacciones, dosis, contraindicaciones y PBM, anclado a guías y evidencia. Acceso con Google.">
+<meta property="og:url" content="https://ikmeds.app">
+<meta property="og:type" content="website">
+  <meta property="og:image" content="https://ikmeds.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>IKMeds — Seguridad farmacológica dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D3B44;
+  --navy2:#135059;
+  --ink:#082A30;
+  --steel:#5A8A8B;
+  --steelMute:#86AEAE;
+  --cream:#E3ECE9;
+  --white:#FAFCFB;
+  --paper:#EFF5F3;
+  --hairline:#D2E0DC;
+  --hairlineSoft:#E1EBE8;
+  --teal:#12A5A0;
+  --m1:    oklch(0.62 0.07 195);
+  --m2:  oklch(0.66 0.09 70);
+  --m3:   oklch(0.62 0.08 150);
+  --m4: oklch(0.58 0.07 290);
+  --m5:        oklch(0.60 0.13 340);
+  --amber:      oklch(0.66 0.09 70);
+  --amberDeep:  oklch(0.58 0.10 65);
+  --sans:'Instrument Sans','Noto Sans KR','Noto Sans JP',system-ui,sans-serif;
+  --mono:'Space Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+html,body{background:var(--paper);color:var(--navy);font-family:var(--sans);letter-spacing:-0.005em;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:0.09em;font-weight:700}
+.hairline{border:none;border-top:1px solid var(--hairline);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ─── NAV ─── */
+nav.top{
+  position:sticky;top:0;z-index:90;background:rgba(244,245,242,.88);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-in{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{
+  width:30px;height:30px;background:var(--teal);border:1px solid var(--teal);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:700;color:var(--cream);font-size:12px;letter-spacing:0.02em;
+}
+.brand-name{font-size:15px;font-weight:600;color:var(--navy)}
+.brand-name .rx{color:var(--steel);font-weight:400}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-pick{display:flex;gap:0;background:var(--white);border:1px solid var(--hairline);border-radius:3px;padding:2px}
+.lb{padding:5px 9px;border:none;background:transparent;border-radius:2px;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--steel);cursor:pointer;letter-spacing:0.08em}
+.lb.on{background:var(--navy);color:var(--cream)}
+.signin{
+  font-size:12px;font-weight:500;color:var(--navy);
+  padding:7px 12px;border:1px solid var(--hairline);background:var(--white);
+  border-radius:3px;transition:border-color .15s
+}
+.signin:hover{border-color:var(--navy)}
+
+/* ─── HERO ─── */
+.hero{
+  background:var(--navy);color:var(--cream);
+  border-radius:4px;margin-top:24px;padding:64px 56px 56px;
+  position:relative;overflow:hidden;
+  border:1px solid var(--navy2);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(232,228,219,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,228,219,.04) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.hero-tag{
+  position:absolute;top:24px;right:24px;display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9px;color:var(--steelMute);letter-spacing:0.18em
+}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--m3);box-shadow:0 0 6px var(--m3)}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.16em;
+  color:var(--steelMute);position:relative;margin-bottom:28px;
+}
+.hero-eyebrow::before{content:"";display:inline-block;width:18px;height:1px;background:var(--steel)}
+.hero h1{
+  font-size:56px;line-height:1.05;font-weight:500;color:var(--white);
+  letter-spacing:-0.02em;max-width:820px;position:relative;
+  text-wrap:balance;
+}
+.hero h1 .accent{color:var(--cream);font-style:italic;font-weight:400}
+.hero h1 .pin{color:var(--m2);font-style:normal}
+.hero-sub{
+  margin-top:20px;font-size:17px;line-height:1.55;color:var(--steelMute);
+  max-width:560px;position:relative;
+}
+.hero-cta-row{margin-top:36px;display:flex;gap:10px;flex-wrap:wrap;position:relative;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 22px;border-radius:3px;font-size:14px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;font-family:var(--sans);
+  transition:transform .12s, background .12s, border-color .12s;
+  letter-spacing:-0.005em;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--m2);color:var(--ink);border-color:var(--m2)}
+.btn-primary:hover{background:var(--amberDeep);border-color:var(--amberDeep)}
+.btn-ghost-light{background:transparent;color:var(--cream);border-color:rgba(224,225,221,.28)}
+.btn-ghost-light:hover{border-color:var(--cream)}
+.btn-tour{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.14em;
+  color:var(--steelMute);background:transparent;border:none;cursor:pointer;
+  padding:10px 0;margin-left:6px;
+}
+.btn-tour .play{
+  width:22px;height:22px;border-radius:50%;border:1px solid var(--steelMute);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:border-color .15s, color .15s;
+}
+.btn-tour:hover{color:var(--cream)}
+.btn-tour:hover .play{border-color:var(--cream);color:var(--cream)}
+
+/* readouts row */
+.readouts{
+  margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid var(--navy2);position:relative;
+}
+.ro{
+  padding:24px 18px 6px 0;border-right:1px solid var(--navy2);
+}
+.ro:last-child{border-right:none}
+.ro-num{
+  font-family:var(--mono);font-size:32px;font-weight:700;color:var(--white);
+  letter-spacing:-0.02em;line-height:1;
+}
+.ro-num .u{color:var(--steelMute);font-size:18px;margin-left:2px}
+.ro-lbl{
+  margin-top:10px;font-family:var(--mono);font-size:9px;font-weight:700;
+  color:var(--steelMute);letter-spacing:0.12em;text-transform:uppercase;
+}
+
+/* ─── SECTION ─── */
+section{padding:80px 0 0}
+.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:36px;max-width:680px}
+.sec-eye{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--steel);letter-spacing:0.16em;text-transform:uppercase}
+.sec-h{font-size:34px;line-height:1.15;font-weight:500;color:var(--navy);letter-spacing:-0.02em;text-wrap:balance}
+.sec-sub{font-size:15px;line-height:1.6;color:var(--steel);max-width:560px}
+
+/* ─── MODULES ─── */
+.mods{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.mod{
+  background:var(--white);border:1px solid var(--hairline);
+  border-left:3px solid var(--steel);
+  border-radius:3px;padding:22px 18px 24px;display:flex;flex-direction:column;gap:10px;
+  position:relative;transition:transform .15s, border-color .15s;
+}
+.mod:hover{transform:translateY(-2px)}
+.mod[data-m="consulta"]   {border-left-color:var(--m1)}
+.mod[data-m="expediente"] {border-left-color:var(--m2)}
+.mod[data-m="interconsulta"]  {border-left-color:var(--m3)}
+.mod[data-m="calc"]{border-left-color:var(--m4)}
+.mod[data-m="pbm"]       {border-left-color:var(--m5)}
+.mod-num{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;
+  color:var(--steel);text-transform:uppercase;display:flex;justify-content:space-between;
+}
+.mod[data-m="consulta"] .mod-num .label   {color:var(--m1)}
+.mod[data-m="expediente"] .mod-num .label {color:var(--m2)}
+.mod[data-m="interconsulta"] .mod-num .label  {color:var(--m3)}
+.mod[data-m="calc"] .mod-num .label{color:var(--m4)}
+.mod[data-m="pbm"] .mod-num .label       {color:var(--m5)}
+.mod-name{font-size:17px;font-weight:600;color:var(--navy);letter-spacing:-0.01em;margin-top:4px}
+.mod-desc{font-size:12.5px;line-height:1.55;color:var(--steel);flex:1}
+.mod-meta{
+  margin-top:10px;padding-top:12px;border-top:1px dashed var(--hairline);
+  font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.04em;
+}
+
+/* ─── VIDEO ─── */
+.video-frame{
+  position:relative;
+  background:var(--navy);
+  border:1px solid var(--hairline);
+  border-radius:3px;
+  padding:14px;
+  margin-bottom:24px;
+  box-shadow:0 1px 0 rgba(13,27,42,.04), 0 12px 28px -18px rgba(13,27,42,.18);
+}
+.video-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 4px 10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+  color:rgba(224,225,221,.55);text-transform:uppercase;
+}
+.video-bar-left{display:flex;align-items:center;gap:10px}
+.video-bar-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 0 3px rgba(230,165,80,.18);
+}
+.video-bar-tag{color:var(--cream);opacity:.85}
+.video-bar-pipe{opacity:.4}
+.video-aspect{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:2px;
+  overflow:hidden;
+}
+.video-aspect iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;display:block;
+}
+.video-corner{
+  position:absolute;width:10px;height:10px;
+  border:1.5px solid var(--steel);
+  pointer-events:none;
+}
+.video-corner.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.video-corner.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.video-corner.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.video-corner.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+@media(max-width:880px){
+  .video-frame{padding:10px}
+  .video-bar{font-size:9px;padding:0 2px 8px}
+  .video-bar-tag-hide-mobile{display:none}
+}
+
+/* ─── HOW IT WORKS ─── */
+.how-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;
+}
+.how-step{
+  background:var(--white);border:1px solid var(--hairline);border-radius:3px;
+  padding:24px 22px;display:flex;flex-direction:column;gap:10px;position:relative;
+}
+.how-step .num{
+  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--steel);
+  letter-spacing:0.16em;
+}
+.how-step .num .big{
+  font-family:var(--sans);font-size:32px;font-weight:500;color:var(--navy);
+  letter-spacing:-0.02em;display:block;margin-bottom:6px;line-height:1;
+}
+.how-step h4{font-size:16px;font-weight:600;color:var(--navy);letter-spacing:-0.01em;margin-top:6px}
+.how-step p{font-size:13px;line-height:1.55;color:var(--steel)}
+.how-step .ex{
+  margin-top:10px;padding:10px 12px;background:var(--paper);border:1px dashed var(--hairline);
+  border-radius:3px;font-family:var(--mono);font-size:11px;color:var(--navy);letter-spacing:0.02em;
+  line-height:1.5;
+}
+
+.tour-panel{
+  background:var(--navy);color:var(--cream);border:1px solid var(--navy2);
+  border-radius:3px;padding:32px 36px;display:grid;
+  grid-template-columns:1fr auto;gap:32px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.tour-panel::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(232,228,219,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,228,219,.04) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+.tour-panel-left{position:relative;display:flex;flex-direction:column;gap:8px}
+.tour-panel-eye{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.16em;
+  color:var(--m2);text-transform:uppercase;display:flex;align-items:center;gap:10px;
+}
+.tour-panel-eye::before{content:"";display:inline-block;width:18px;height:1px;background:var(--m2)}
+.tour-panel h3{
+  font-size:24px;line-height:1.25;font-weight:500;color:var(--white);
+  letter-spacing:-0.015em;text-wrap:balance;max-width:480px;
+}
+.tour-panel-meta{
+  display:flex;gap:14px;margin-top:8px;
+  font-family:var(--mono);font-size:9px;color:var(--steelMute);letter-spacing:0.14em;text-transform:uppercase;
+}
+.tour-panel-meta span{display:inline-flex;align-items:center;gap:6px}
+.tour-panel-meta .pip{width:5px;height:5px;border-radius:50%;background:var(--m3)}
+.tour-launch{
+  position:relative;display:inline-flex;align-items:center;gap:14px;
+  padding:18px 26px;background:var(--m2);color:var(--ink);
+  border:none;border-radius:3px;font-family:var(--sans);font-size:14px;font-weight:600;
+  cursor:pointer;letter-spacing:-0.005em;transition:background .12s, transform .12s;
+}
+.tour-launch:hover{background:var(--amberDeep)}
+.tour-launch:active{transform:translateY(1px)}
+.tour-launch .play-circle{
+  width:32px;height:32px;border-radius:50%;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;color:var(--m2);flex-shrink:0;
+}
+
+/* ─── DEMO ─── */
+.demo-wrap{
+  background:var(--white);border:1px solid var(--hairline);border-radius:3px;overflow:hidden;
+}
+.demo-top{
+  background:var(--navy);padding:14px 18px;display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--navy2);
+}
+.demo-top .mark{
+  width:26px;height:26px;background:var(--ink);border:1px solid var(--navy2);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:700;color:var(--cream);font-size:11px;
+}
+.demo-top .name{color:var(--white);font-size:13px;font-weight:600}
+.demo-top .crumb{
+  font-family:var(--mono);font-size:9px;font-weight:700;color:var(--m2);
+  letter-spacing:0.16em;padding:3px 7px;border:1px solid var(--m2);border-radius:3px;
+  background:rgba(207,154,73,.08);
+}
+.demo-top .right{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--steelMute)}
+.demo-top .right .led{width:6px;height:6px;border-radius:50%;background:var(--m3);box-shadow:0 0 6px var(--m3)}
+.demo-body{padding:22px;background:var(--paper);display:flex;flex-direction:column;gap:14px}
+.msg{display:flex;flex-direction:column;max-width:78%}
+.msg.u{align-self:flex-end;align-items:flex-end}
+.msg.a{align-self:flex-start}
+.bbl{
+  padding:12px 16px;border-radius:3px;font-size:14px;line-height:1.55;
+  border:1px solid var(--hairline);
+}
+.msg.u .bbl{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.msg.a .bbl{background:var(--white);color:var(--navy);border-left:3px solid var(--m2)}
+.bbl .ptag{
+  display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--m2);
+  letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;
+}
+.bbl .lcd{
+  display:block;background:var(--ink);color:var(--cream);font-family:var(--mono);
+  font-size:12px;line-height:1.7;padding:10px 12px;border-radius:3px;margin-top:8px;
+  border:1px solid var(--navy2);
+}
+.bbl .lcd .k{color:var(--steelMute)}
+.bbl .lcd .v{color:var(--cream)}
+.bbl .lcd .am{color:var(--m2)}
+.bbl .uphint{display:block;margin-top:10px;font-size:12px;color:var(--steel);font-style:italic}
+.demo-foot{display:flex;gap:8px;padding:14px 18px;background:var(--white);border-top:1px solid var(--hairline)}
+.demo-input{
+  flex:1;padding:10px 14px;background:var(--paper);border:1px solid var(--hairline);
+  border-radius:3px;font-size:13px;color:var(--steel);font-family:var(--sans);
+}
+.demo-send{padding:10px 18px;background:var(--navy);color:var(--cream);border:none;border-radius:3px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans)}
+
+/* ─── PRICING ─── */
+.cur-toggle{
+  display:inline-flex;background:var(--white);border:1px solid var(--hairline);
+  border-radius:3px;padding:3px;margin-bottom:28px;
+}
+.cur-btn{
+  padding:8px 18px;border:none;background:transparent;font-family:var(--mono);
+  font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--steel);cursor:pointer;border-radius:2px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.cur-btn.on{background:var(--navy);color:var(--cream)}
+.cur-btn .flag{font-size:13px}
+
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
+.plan{
+  background:var(--white);border:1px solid var(--hairline);border-radius:3px;
+  padding:24px 22px;display:flex;flex-direction:column;position:relative;
+}
+.plan.feat{
+  background:var(--navy);border-color:var(--navy);color:var(--cream);
+  box-shadow:0 18px 40px -22px rgba(13,27,42,.45);
+}
+.plan.pbm{
+  border-top:3px solid var(--m5);
+}
+.plan-eye{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.16em;
+  color:var(--steel);text-transform:uppercase;display:flex;align-items:center;gap:10px;
+}
+.plan.feat .plan-eye{color:var(--m2)}
+.plan-eye .badge{
+  display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;
+  background:var(--m2);color:var(--ink);padding:3px 8px;border-radius:2px;letter-spacing:0.14em;
+}
+.plan-name{font-size:20px;font-weight:600;margin-top:12px;letter-spacing:-0.01em}
+.plan.feat .plan-name{color:var(--white)}
+
+.price-block{margin-top:18px;display:flex;align-items:flex-end;gap:8px}
+.price-big{
+  font-size:62px;font-weight:600;line-height:.92;letter-spacing:-0.04em;
+  font-family:var(--sans);color:var(--navy);
+}
+.plan.feat .price-big{color:var(--white)}
+.price-big .currency{font-size:20px;font-weight:500;vertical-align:top;color:var(--steel);margin-right:2px;letter-spacing:-0.02em}
+.plan.feat .price-big .currency{color:var(--steelMute)}
+.price-side{display:flex;flex-direction:column;gap:2px;padding-bottom:8px}
+.price-unit{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--steel);
+}
+.plan.feat .price-unit{color:var(--steelMute)}
+.price-cap{font-family:var(--mono);font-size:9px;color:var(--steel);letter-spacing:0.08em}
+.plan.feat .price-cap{color:var(--steel)}
+
+.price-sub{
+  margin-top:12px;padding:9px 11px;background:var(--paper);
+  border:1px dashed var(--hairline);border-radius:3px;
+  font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.02em;
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.plan.feat .price-sub{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14);color:var(--cream)}
+.price-sub .x{color:var(--steel);text-transform:uppercase;letter-spacing:0.14em;font-size:8.5px}
+.plan.feat .price-sub .x{color:var(--steelMute)}
+
+.plan-desc{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--steel);min-height:46px}
+.plan.feat .plan-desc{color:var(--steelMute)}
+
+.feats{margin-top:14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.feat-row{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.4;color:var(--navy)}
+.plan.feat .feat-row{color:var(--cream)}
+.feat-row svg{flex-shrink:0;margin-top:3px}
+.feat-row.off{color:var(--steel);text-decoration:line-through;text-decoration-color:var(--steelMute);text-decoration-thickness:1px}
+.feat-row.off svg{opacity:.4}
+.plan.feat .feat-row.off{color:var(--steelMute);opacity:.55}
+
+/* Feature row highlighted (PBM in Elite) */
+.feat-row.hl{
+  background:rgba(190,75,160,0.10);
+  border:1px solid var(--m5);
+  border-radius:3px;
+  padding:7px 9px;
+  margin:2px 0;
+  font-weight:600;
+}
+.feat-row.hl svg{color:var(--m5);stroke-width:3}
+.plan.feat .feat-row.hl{
+  background:rgba(190,75,160,0.18);
+  border-color:var(--m5);
+  color:var(--white);
+}
+
+.plan-cta{
+  margin-top:18px;display:block;text-align:center;padding:12px 14px;border-radius:3px;
+  font-size:12.5px;font-weight:600;font-family:var(--sans);letter-spacing:-0.005em;
+  border:1px solid var(--hairline);background:var(--white);color:var(--navy);
+  transition:border-color .12s,background .12s,color .12s;
+}
+.plan-cta:hover{border-color:var(--navy)}
+.plan.feat .plan-cta{background:var(--m2);border-color:var(--m2);color:var(--ink)}
+.plan.feat .plan-cta:hover{background:var(--amberDeep);border-color:var(--amberDeep)}
+.plan.pbm .plan-cta{background:var(--m5);border-color:var(--m5);color:var(--white)}
+.plan.pbm .plan-cta:hover{filter:brightness(0.92)}
+.plan-fine{margin-top:10px;font-family:var(--mono);font-size:8.5px;color:var(--steel);letter-spacing:0.1em;text-align:center;text-transform:uppercase}
+.plan.feat .plan-fine{color:var(--steelMute)}
+
+/* Interval toggle (mensual/anual) + savings strip per card */
+.toggles-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px}
+.int-toggle{
+  display:inline-flex;background:var(--white);border:1px solid var(--hairline);
+  border-radius:3px;padding:3px;
+}
+.int-btn{
+  padding:8px 18px;border:none;background:transparent;font-family:var(--mono);
+  font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--steel);cursor:pointer;border-radius:2px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.int-btn.on{background:var(--navy);color:var(--cream)}
+.int-btn .save{
+  font-size:8px;background:var(--m2);color:var(--ink);padding:2px 5px;border-radius:2px;
+  letter-spacing:0.12em;font-weight:700;
+}
+.int-btn.on .save{background:var(--amberDeep);color:var(--ink)}
+
+.savings-strip{
+  margin-top:10px;
+  padding:8px 11px;
+  background:rgba(207,154,73,0.10);
+  border:1px solid var(--amberDeep);
+  border-radius:3px;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9.5px;font-weight:700;
+  color:var(--amberDeep);letter-spacing:0.10em;text-transform:uppercase;
+}
+.savings-strip .ic{
+  flex-shrink:0;width:14px;height:14px;border-radius:50%;
+  background:var(--amberDeep);color:var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;
+}
+.plan.feat .savings-strip{
+  background:rgba(207,154,73,0.18);
+  border-color:var(--m2);
+  color:var(--m2);
+}
+.plan.pbm .savings-strip{
+  background:rgba(190,75,160,0.10);
+  border-color:var(--m5);
+  color:var(--m5);
+}
+.plan.pbm .savings-strip .ic{background:var(--m5);color:var(--white)}
+
+/* Nota PBM arriba del grid de planes */
+.note-pbm{
+  background:rgba(190,75,160,0.06);border:1px dashed var(--m5);border-radius:3px;
+  padding:12px 14px;margin-bottom:20px;font-size:12.5px;line-height:1.55;color:var(--navy);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.note-pbm .dot{
+  flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--m5);margin-top:5px;
+}
+.note-pbm strong{color:var(--m5);font-weight:700}
+
+/* ─── TESTIMONIALS ─── */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tc{background:var(--white);border:1px solid var(--hairline);border-radius:3px;padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+.tc .stars{font-family:var(--mono);font-size:10px;letter-spacing:0.4em;color:var(--m2)}
+.tc p{font-size:14px;line-height:1.6;color:var(--navy);text-wrap:pretty}
+.tauth{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--hairlineSoft)}
+.tauth .av{
+  width:34px;height:34px;background:var(--paper);border:1px solid var(--hairline);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:700;font-size:11px;color:var(--navy);letter-spacing:0.04em;
+}
+.aname{font-size:13px;font-weight:600;color:var(--navy)}
+.arole{font-family:var(--mono);font-size:9px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+
+/* ─── CTA STRIP ─── */
+.cta{
+  background:var(--navy);color:var(--cream);border:1px solid var(--navy2);border-radius:4px;
+  padding:56px 48px;position:relative;overflow:hidden;
+}
+.cta-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(232,228,219,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,228,219,.04) 1px,transparent 1px);
+  background-size:32px 32px}
+.cta-eye{font-family:var(--mono);font-size:10px;color:var(--steelMute);letter-spacing:0.18em;text-transform:uppercase;position:relative}
+.cta h2{font-size:36px;line-height:1.15;font-weight:500;color:var(--white);letter-spacing:-0.02em;margin-top:10px;max-width:640px;position:relative;text-wrap:balance}
+.cta-sub{font-size:15px;line-height:1.6;color:var(--steelMute);max-width:520px;margin-top:14px;position:relative}
+.cta-row{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;position:relative;align-items:center}
+.cta-fine{margin-top:18px;font-family:var(--mono);font-size:9px;letter-spacing:0.16em;color:var(--steelMute);text-transform:uppercase;position:relative}
+
+/* ─── CONTACT FORM ─── */
+.contact{
+  background:var(--white);border:1px solid var(--hairline);border-radius:3px;
+  padding:24px 32px;margin:18px 0 32px;position:relative;
+  display:flex;align-items:center;gap:32px;flex-wrap:wrap;
+}
+.contact-head{flex:1 1 auto;min-width:0;max-width:none;margin-bottom:0;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.contact-head .sec-eye{margin-bottom:0;flex:0 0 auto}
+.contact-head h2{
+  font-size:18px;line-height:1.3;font-weight:500;color:var(--navy);
+  letter-spacing:-0.01em;flex:0 0 auto;
+}
+.contact-head .contact-sub{
+  margin-top:0;font-size:13px;line-height:1.5;color:var(--steel);max-width:none;flex:1 1 240px;min-width:200px;
+}
+.contact-form .cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cf-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.cf-full{grid-column:1 / -1}
+.cf-lbl{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--steel);display:flex;gap:8px;align-items:baseline;
+}
+.cf-opt{color:var(--steelMute);font-weight:500;letter-spacing:0.06em;text-transform:none;font-size:10px}
+.cf-field input,.cf-field textarea{
+  font-family:var(--sans);font-size:14px;color:var(--navy);
+  background:var(--paper);border:1px solid var(--hairline);border-radius:3px;
+  padding:12px 14px;letter-spacing:-0.005em;outline:none;width:100%;
+  transition:border-color .12s, background .12s;
+}
+.cf-field textarea{resize:vertical;min-height:96px;font-family:var(--sans)}
+.cf-field input:focus,.cf-field textarea:focus{border-color:var(--navy);background:var(--white)}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:var(--steelMute)}
+.cf-actions{margin-top:20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cf-submit{padding:14px 28px}
+.cf-submit[disabled]{opacity:.6;cursor:wait}
+.cf-status{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--steel)}
+.cf-status.ok{color:var(--m3)}
+.cf-status.err{color:#c0392b}
+.cf-fine{margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--steel)}
+.contact-toggle{
+  margin-top:0;display:inline-flex;align-items:center;gap:12px;cursor:pointer;
+  padding:10px 18px;background:var(--navy);color:var(--cream);border:1px solid var(--navy);flex:0 0 auto;
+  border-radius:3px;font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:-0.005em;
+  transition:background .12s,border-color .12s,color .12s;
+}
+.contact-toggle:hover{background:var(--ink);border-color:var(--ink)}
+.contact-toggle.on{background:var(--m2);border-color:var(--m2);color:var(--ink)}
+.contact-toggle .ct-chev{
+  font-family:var(--mono);font-size:14px;font-weight:500;line-height:1;
+  width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid currentColor;border-radius:50%;opacity:.85;
+}
+.contact-form-wrap{margin-top:0;flex:1 1 100%;width:100%;border-top:1px solid var(--hairline);padding-top:22px;animation:cfReveal .25s ease-out}
+@keyframes cfReveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* ─── FOOTER ─── */
+footer.bot{padding:48px 0 32px;margin-top:64px;border-top:1px solid var(--hairline)}
+.foot-in{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:10px}
+.foot-meta{font-family:var(--mono);font-size:10px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+
+/* ─── TOUR MODAL (iframe) ─── */
+.tour-modal{
+  position:fixed;inset:0;z-index:1000;background:rgba(13,27,42,.65);
+  display:none;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.tour-modal.open{display:flex}
+.tour-frame{
+  width:min(420px,100%);height:min(720px,calc(100vh - 32px));
+  border:1px solid var(--hairline);border-radius:6px;background:var(--paper);
+  box-shadow:0 30px 80px -20px rgba(13,27,42,.45);overflow:hidden;
+}
+.tour-frame iframe{width:100%;height:100%;border:none;background:transparent;display:block}
+.tour-close{
+  position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;
+  background:var(--white);border:1px solid var(--hairline);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:var(--navy);
+}
+.tour-close:hover{border-color:var(--navy)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:880px){
+  .hero{padding:44px 24px 36px}
+  .hero h1{font-size:38px}
+  .readouts{grid-template-columns:repeat(2,1fr)}
+  .ro{border-right:none;border-bottom:1px solid var(--navy2);padding:18px 0}
+  .ro:nth-child(odd){border-right:1px solid var(--navy2);padding-right:18px}
+  .mods{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1fr}
+  .plan.feat{transform:none}
+  .tgrid{grid-template-columns:1fr}
+  .sec-h{font-size:26px}
+  .cta{padding:36px 24px}
+  .cta h2{font-size:26px}
+  .price-big{font-size:64px}
+  /* HOW IT WORKS — stack panel on tablet & mobile */
+  .how-steps{grid-template-columns:1fr;gap:12px;margin-bottom:18px}
+  .tour-panel{grid-template-columns:1fr;padding:26px 22px;gap:22px;align-items:flex-start}
+  .tour-panel h3{font-size:20px;max-width:none}
+  .tour-launch{width:100%;justify-content:center;padding:16px 20px;font-size:13px}
+  .tour-panel-meta{flex-wrap:wrap;row-gap:6px}
+  /* Contact form on tablet */
+  .contact{padding:22px 24px;gap:18px}
+  .contact-form .cf-grid{grid-template-columns:1fr}
+  .contact-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .contact-head h2{font-size:18px}
+}
+@media(max-width:520px){
+  html,body{overflow-x:hidden}
+  .wrap{padding:0 18px}
+  .hero{padding:36px 20px 30px;border-radius:3px}
+  .hero h1{font-size:28px;line-height:1.18}
+  .hero-sub{font-size:14px}
+  .hero-cta-row{flex-wrap:wrap;gap:10px}
+  .hero-cta-row .btn,.hero-cta-row .btn-tour{width:100%;justify-content:center;text-align:center}
+  .btn-tour{margin-left:0;padding:12px 0;border-top:1px solid var(--navy2)}
+  .mods{grid-template-columns:1fr}
+  .nav-in{flex-wrap:wrap;gap:10px;padding:10px 18px}
+  .lang-pick{order:2}
+  .sec-head{padding:0 0 18px}
+  .sec-h{font-size:22px;line-height:1.22}
+  .sec-eye{font-size:9px}
+  .sec-sub{font-size:13px}
+  .price-big{font-size:54px}
+  .price-block{gap:8px}
+  .price-side{padding-bottom:6px}
+  .plan{padding:24px 20px}
+  .cur-toggle{width:100%;justify-content:center}
+  .cur-btn{flex:1;justify-content:center}
+  /* HOW panel on phones */
+  .tour-panel{padding:22px 18px;gap:18px}
+  .tour-panel h3{font-size:18px}
+  .tour-panel-eye{font-size:9px}
+  .tour-launch{padding:14px 18px;font-size:13px;gap:10px}
+  .tour-launch .play-circle{width:28px;height:28px}
+  .how-step{padding:20px 18px}
+  .how-step .num .big{font-size:26px}
+  /* TOUR MODAL — fill phone screen */
+  .tour-modal{padding:0}
+  .tour-frame{width:100%;height:100vh;height:100dvh;border-radius:0;border:none}
+  .tour-close{top:10px;right:10px;width:32px;height:32px}
+  /* CTA + footer */
+  .cta{padding:28px 20px}
+  .cta h2{font-size:22px}
+  .cta-row{flex-wrap:wrap;gap:10px}
+  .cta-row .btn{width:100%;justify-content:center;text-align:center}
+  .foot-in{flex-direction:column;align-items:flex-start;gap:14px}
+  /* Contact form on phone */
+  .contact{padding:20px 18px;margin:14px 0 24px;gap:14px}
+  .contact-head h2{font-size:17px}
+  .contact-toggle{width:100%;justify-content:center}
+  .cf-actions{flex-direction:column;align-items:stretch;gap:12px}
+  .cf-submit{width:100%;justify-content:center;text-align:center}
+}
+
+.acad-name{font-family:var(--sans);font-size:24px;font-weight:600;color:var(--navy);letter-spacing:-0.02em;line-height:1.2}
+.acad-tag{margin-top:10px;font-size:13.5px;line-height:1.55;color:var(--steel)}
+.acad-feats{margin-top:18px;display:flex;flex-direction:column;gap:9px}
+.acad-feat{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;line-height:1.4;color:var(--navy)}
+.acad-feat svg{flex-shrink:0;margin-top:2px;color:var(--amberDeep)}
+.acad-right{display:flex;flex-direction:column;align-items:flex-start;border-left:1px solid var(--hairlineSoft);padding-left:32px}
+.acad-price{font-family:var(--sans);font-size:56px;font-weight:600;line-height:.92;letter-spacing:-0.04em;color:var(--navy)}
+.acad-cur{font-size:20px;font-weight:500;vertical-align:top;color:var(--steel);margin-right:2px;letter-spacing:-0.02em}
+.acad-unit{margin-top:6px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--steel)}
+.acad-bill{margin-top:14px;padding:9px 11px;background:var(--paper);border:1px dashed var(--hairline);border-radius:3px;font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.02em;display:flex;gap:8px;align-items:center}
+.acad-bill .x{color:var(--amberDeep);text-transform:uppercase;letter-spacing:0.14em;font-size:8.5px}
+.acad-cta{margin-top:18px;display:inline-block;text-align:center;padding:13px 26px;border-radius:3px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:-0.005em;background:var(--amber);border:1px solid var(--amber);color:var(--ink);text-decoration:none;transition:background .12s,border-color .12s}
+.acad-cta:hover{background:var(--amberDeep);border-color:var(--amberDeep)}
+.acad-fine{margin-top:10px;font-family:var(--mono);font-size:8.5px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+@media(max-width:720px){
+  
+  .acad-right{border-left:none;border-top:1px solid var(--hairlineSoft);padding-left:0;padding-top:24px;align-items:stretch}
+  .acad-price{font-size:48px}
+}
+
+
+
+/* ===== footer legal + modales ===== */
+.foot-legal-links{display:flex;align-items:center;gap:10px}
+.foot-link{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:13px;color:var(--navy);text-decoration:underline;text-underline-offset:2px;padding:0;transition:color .2s}
+.foot-link:hover{color:var(--teal)}
+.foot-dot{color:var(--steel)}
+.foot-entity{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--steel);text-transform:uppercase}
+.foot-entity a{color:var(--steel)}
+.foot-copy{margin-top:8px}
+.legal-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}
+.legal-modal[hidden]{display:none}
+.legal-backdrop{position:absolute;inset:0;background:rgba(8,42,48,.55);backdrop-filter:blur(2px)}
+.legal-panel{position:relative;background:var(--white);border:1px solid var(--hairline);border-radius:16px;max-width:720px;width:100%;max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 60px -20px rgba(8,42,48,.5)}
+.legal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid var(--hairline);flex-shrink:0}
+.legal-title{font-size:17px;font-weight:600;color:var(--ink)}
+.legal-close{background:none;border:none;font-size:26px;line-height:1;color:var(--steel);cursor:pointer;padding:0 4px;transition:color .2s}
+.legal-close:hover{color:var(--ink)}
+.legal-body{overflow-y:auto;padding:20px 24px 28px}
+.legal-body .legal-sub{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--steel);margin-bottom:20px}
+.legal-body h4{font-size:14px;font-weight:600;color:var(--navy);margin:22px 0 6px}
+.legal-body p{font-size:13.5px;line-height:1.65;color:var(--ink);margin:0 0 10px}
+.legal-tbl{width:100%;border-collapse:collapse;margin:10px 0 14px;font-size:12px}
+.legal-tbl th,.legal-tbl td{border:1px solid var(--hairline);padding:7px 9px;text-align:left;vertical-align:top}
+.legal-tbl th{background:var(--paper);font-weight:600;color:var(--navy)}
+.legal-tbl td{color:var(--ink)}
+@media(max-width:560px){.legal-body .legal-tbl{font-size:11px}.legal-body .legal-tbl th,.legal-body .legal-tbl td{padding:5px 6px}}
+
+/* ===== IKMeds pricing ===== */
+#pricing .ik-cur-toggle{display:flex;gap:6px;justify-content:center;margin:0 auto 30px;width:max-content;background:var(--paper);border:1px solid var(--hairline);border-radius:999px;padding:4px}
+#pricing .ik-cur{border:none;background:transparent;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--steel);padding:7px 22px;border-radius:999px;cursor:pointer;transition:all .2s}
+#pricing .ik-cur.on{background:var(--teal);color:var(--white)}
+.ik-pricing{max-width:760px;margin:0 auto}
+.ik-enroll{background:var(--navy);border-radius:18px;padding:26px 28px;color:var(--white);box-shadow:0 14px 34px -20px rgba(8,42,48,.55)}
+.ik-enroll-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(18,165,160,.14);border:1px solid rgba(18,165,160,.4);padding:4px 11px;border-radius:999px;margin-bottom:18px}
+.ik-enroll-body{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.ik-enroll-name{font-size:22px;font-weight:600;margin-bottom:6px}
+.ik-enroll-inc{font-size:15px;color:var(--cream);margin-bottom:8px}
+.ik-enroll-note{font-size:13px;color:var(--steel);max-width:340px}
+.ik-enroll-buy{text-align:right;flex-shrink:0}
+.ik-price{font-family:var(--mono);margin-bottom:12px;white-space:nowrap}
+.ik-price .ik-cur-sym{font-size:32px;font-weight:700;color:var(--white)}
+.ik-price .ik-cur-cod{font-size:13px;color:var(--steel);letter-spacing:.06em}
+.ik-cta{display:inline-block;background:var(--teal);color:var(--white);font-weight:600;font-size:15px;padding:11px 26px;border-radius:10px;text-decoration:none;transition:all .2s;white-space:nowrap}
+.ik-cta:hover{filter:brightness(1.07)}
+.ik-sep{display:flex;align-items:center;gap:16px;margin:26px 4px 22px;color:var(--steel);font-size:13px;font-weight:500}
+.ik-sep span{flex:1;height:1px;background:var(--hairline)}
+.ik-recargas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ik-card{background:var(--white);border:1px solid var(--hairline);border-radius:16px;padding:22px 22px 24px;position:relative;display:flex;flex-direction:column}
+.ik-card-best{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+.ik-card-badge{position:absolute;top:-11px;left:22px;background:var(--teal);color:var(--white);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:999px}
+.ik-card-tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--steel);margin-bottom:6px}
+.ik-card-name{font-size:19px;font-weight:600;color:var(--ink);margin-bottom:14px}
+.ik-card .ik-price{margin-bottom:18px}
+.ik-card .ik-price .ik-cur-sym{font-size:28px;color:var(--ink)}
+.ik-card .ik-price .ik-cur-cod{color:var(--steel)}
+.ik-card .ik-cta{text-align:center;margin-top:auto}
+.ik-cta-ghost{background:transparent;color:var(--navy);border:1px solid var(--hairline)}
+.ik-cta-ghost:hover{border-color:var(--teal);color:var(--teal);filter:none}
+.ik-note{max-width:640px;margin:30px auto 0;font-size:13px;line-height:1.6;color:var(--steel);text-align:center}
+@media(max-width:560px){.ik-recargas{grid-template-columns:1fr}.ik-enroll-body{flex-direction:column;align-items:flex-start}.ik-enroll-buy{text-align:left;width:100%}.ik-card-badge{left:auto;right:22px}}
+#testimonials{display:none !important;}
+.lang-pick{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <div class="brand-mark">iK</div>
+      <div class="brand-name">IK<span class="rx">Meds</span></div>
+    </a>
+    <div class="nav-right">
+      <a class="signin" href="https://app.thelaser.ai" target="_blank" rel="noopener" data-i="signin">Iniciar sesión</a>
+      <div class="lang-pick" id="langPick">
+        <button class="lb on" data-l="es" onclick="setL('es')">ES</button>
+        <button class="lb" data-l="en" onclick="setL('en')">EN</button>
+        <button class="lb" data-l="pt" onclick="setL('pt')">PT</button>
+        <button class="lb" data-l="ja" onclick="setL('ja')">JA</button>
+        <button class="lb" data-l="ko" onclick="setL('ko')">KO</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div id="app"></div>
+  <footer class="bot">
+    <div class="foot-in">
+      <div class="foot-brand">
+        <div class="brand-mark">iK</div>
+        <div>
+          <div class="brand-name" style="font-size:14px">IK<span class="rx">Meds</span></div>
+          <div class="foot-meta" style="margin-top:4px" id="footTag">IA clínica · Seguridad farmacológica</div>
+        </div>
+      </div>
+      <div class="foot-legal-links">
+        <button type="button" class="foot-link" onclick="openLegal('terminos')">Términos de Uso</button>
+        <span class="foot-dot">·</span>
+        <button type="button" class="foot-link" onclick="openLegal('privacidad')">Aviso de Privacidad</button>
+      </div>
+    </div>
+    <div class="foot-entity">Endo&amp;Laser · RFC EMA180307EU7 · Palmas 735, Ciudad de México · <a href="mailto:legal@laserapp.ai">legal@laserapp.ai</a></div>
+    <div class="foot-meta foot-copy" id="footCopy">© 2026 IKMeds</div>
+  </footer>
+  <div class="legal-modal" id="legal-terminos" hidden>
+    <div class="legal-backdrop" onclick="closeLegal('terminos')"></div>
+    <div class="legal-panel" role="dialog" aria-modal="true" aria-label="Términos de Uso de IKMeds">
+      <div class="legal-head"><div class="legal-title">Términos de Uso de IKMeds</div><button type="button" class="legal-close" onclick="closeLegal('terminos')" aria-label="Cerrar">&times;</button></div>
+      <div class="legal-body"><div class="legal-sub">Última actualización: Mayo 2026 · Versión 1.0</div>
+<p>Bienvenido a IKMeds. Estos Términos de Uso regulan el acceso y uso de la plataforma, sus funciones, consultas, resultados y servicios relacionados. Al acceder o utilizar IKMeds, el usuario acepta estos Términos de Uso en su totalidad.</p>
+<h4>Identificación del responsable</h4>
+<p>IKMeds es una plataforma operada bajo la marca IKMeds, propiedad de Endo&amp;Laser (RFC: EMA180307EU7), con domicilio en Palmas 735, Ciudad de México, México.</p>
+<h4>Naturaleza de la plataforma</h4>
+<p>IKMeds es una herramienta digital de apoyo informativo y consulta sobre seguridad farmacológica dental, interacciones medicamentosas, anestésicos locales y decisiones farmacológicas, dirigida exclusivamente a profesionales odontológicos. No sustituye el juicio clínico profesional, la valoración del paciente, el diagnóstico, el tratamiento ni la responsabilidad del operador tratante. IKMeds no constituye un instrumento médico ni un dispositivo regulado.</p>
+<h4>Usuarios autorizados</h4>
+<p>El uso de IKMeds está restringido a profesionales dentales con licencia o cédula vigente para ejercer la odontología en su jurisdicción. El usuario declara, bajo su responsabilidad, contar con la titulación, capacitación y autorizaciones requeridas para la prescripción farmacológica y manejo de anestésicos en odontología. El usuario reconoce que la formación en farmacología dental, identificación de interacciones medicamentosas y manejo de pacientes con polifarmacia es responsabilidad personal e indelegable, y que IKMeds no la sustituye.</p>
+<h4>Riesgos clínicos asociados a decisiones farmacológicas</h4>
+<p>El usuario reconoce y acepta que la prescripción farmacológica y el uso de anestésicos en odontología implican riesgos potenciales para el paciente, incluyendo de manera no exhaustiva: interacciones medicamentosas adversas, reacciones alérgicas o anafilácticas, errores de dosificación, sobredosis o subdosis de anestésicos, toxicidad sistémica por anestésicos locales, contraindicaciones por comorbilidades, eventos adversos por automedicación previa del paciente, sangrado por antiagregantes o anticoagulantes, osteonecrosis por bifosfonatos, y otros eventos relacionados con estado sistémico del paciente, e interacción con otros tratamientos. La protección ocular adecuada para operador, paciente y asistentes es obligatoria y de exclusiva responsabilidad del usuario.</p>
+<h4>Validación obligatoria de parámetros</h4>
+<p>Los protocolos, parámetros, cálculos y sugerencias generados por la inteligencia artificial de IKMeds pueden contener errores, omisiones, simplificaciones o requerir validación adicional. El usuario se obliga a contrastar siempre los parámetros sugeridos contra las instrucciones de uso (IFU) oficiales del fabricante de su equipo, la literatura clínica vigente, su criterio profesional y las condiciones específicas del paciente. La decisión final sobre cualquier parámetro o tratamiento recae exclusivamente en el profesional tratante.</p>
+<h4>Cumplimiento regulatorio local</h4>
+<p>El usuario es responsable de cumplir con la normativa aplicable en su jurisdicción respecto al prescripción farmacológica y uso de anestésicos en odontología, incluyendo de manera no exhaustiva COFEPRIS (México), FDA (Estados Unidos), ANVISA (Brasil), PMDA (Japón), MFDS (Corea), CE (Unión Europea) o las autoridades sanitarias correspondientes.</p>
+<h4>Responsabilidad del usuario</h4>
+<p>El usuario es el único responsable de revisar, validar y confirmar toda la información generada por la plataforma antes de utilizarla en cualquier contexto clínico. El usuario se obliga a no depender exclusivamente de IKMeds para la toma de decisiones clínicas, terapéuticas, farmacológicas o diagnósticas.</p>
+<h4>Uso permitido</h4>
+<p>El usuario podrá utilizar IKMeds únicamente para fines lícitos. Queda prohibido: a) usar la plataforma para fines ilícitos, fraudulentos o engañosos; b) introducir información que vulnere derechos de terceros; c) compartir credenciales personales sin autorización; d) intentar interferir con la seguridad o integridad de la plataforma; e) usar la plataforma sin contar con la habilitación profesional requerida.</p>
+<h4>Cuenta y acceso</h4>
+<p>El acceso a IKMeds puede requerir autenticación mediante correo electrónico, enlace mágico, PIN, autenticación con Google u otros mecanismos habilitados. El usuario es responsable del uso y resguardo de sus credenciales.</p>
+<h4>Pagos, consultas y créditos</h4>
+<p>Los precios, paquetes y créditos disponibles se rigen por las condiciones publicadas al momento de la compra. Salvo disposición legal aplicable, los pagos no son reembolsables. Las consultas y créditos son personales e intransferibles. Las suscripciones se renuevan automáticamente conforme a los términos vigentes en Stripe; el usuario podrá cancelar en cualquier momento desde su portal de pagos.</p>
+<h4>Disponibilidad del servicio</h4>
+<p>IKMeds podrá actualizar, modificar, suspender o discontinuar funciones, precios, paquetes, integraciones o características en cualquier momento, con o sin previo aviso razonable.</p>
+<h4>Resultados generados por inteligencia artificial</h4>
+<p>Los protocolos, cálculos, validaciones, identificaciones de equipo y sugerencias generados por IKMeds tienen carácter informativo y de apoyo. Pueden contener errores, omisiones o requerir validación adicional. Toda decisión final recae exclusivamente en el profesional tratante.</p>
+<h4>Modo de Verificación</h4>
+<p>IKMeds puede operar en dos modos. Cuando el odontólogo activa el Modo de Verificación, el agente realiza preguntas previas al reporte para confirmar interpretaciones críticas, especialmente la identificación de marcas comerciales de medicamentos. Las confirmaciones del usuario son la base del razonamiento del agente; por tanto, la responsabilidad clínica de los datos confirmados recae en el usuario. Cuando el Modo de Verificación está apagado (configuración por defecto), el usuario acepta el riesgo de que las identificaciones automáticas de medicamentos puedan contener errores y se compromete a validar manualmente toda Denominación Común Internacional (DCI) y dosis antes de tomar decisiones clínicas.</p>
+<h4>Propiedad intelectual</h4>
+<p>Todos los elementos de IKMeds, incluyendo nombre, marca, diseño, estructura, contenidos propios, base de conocimientos, interfaces y materiales asociados, están protegidos por las leyes de propiedad intelectual aplicables. El uso de la plataforma no transfiere ningún derecho de propiedad al usuario.</p>
+<h4>Limitación de responsabilidad</h4>
+<p>En la máxima medida permitida por la ley aplicable, IKMeds y Endo&amp;Laser no serán responsables por daños directos, indirectos, incidentales, consecuenciales, clínicos, económicos, reputacionales o de cualquier otra naturaleza derivados del uso o imposibilidad de uso de la plataforma, incluyendo decisiones tomadas con base en la información generada por ella, lesiones a pacientes, complicaciones clínicas, o cualquier otro resultado adverso.</p>
+<h4>Datos proporcionados por el usuario</h4>
+<p>El usuario es responsable de la calidad, veracidad, licitud y pertinencia de la información que introduce. El usuario se obliga a no cargar información identificable de pacientes (nombres, registros médicos completos, datos de contacto) salvo bajo su exclusiva responsabilidad y con las autorizaciones aplicables.</p>
+<h4>Modificaciones</h4>
+<p>IKMeds podrá modificar estos Términos de Uso en cualquier momento. Los cambios sustanciales requerirán nueva aceptación por parte del usuario.</p>
+<h4>Jurisdicción</h4>
+<p>Estos Términos se rigen por las leyes de los Estados Unidos Mexicanos. Cualquier controversia será sometida a los tribunales competentes de la Ciudad de México, renunciando el usuario a cualquier otro fuero.</p>
+<h4>Contacto</h4>
+<p>Para consultas relacionadas con estos Términos de Uso: <a href="mailto:legal@laserapp.ai">legal@laserapp.ai</a></p>
+<h4>Aceptación</h4>
+<p>Al marcar la casilla de aceptación y utilizar la plataforma, el usuario manifiesta haber leído, entendido y aceptado estos Términos de Uso en su totalidad.</p></div>
+    </div>
+  </div>
+  <div class="legal-modal" id="legal-privacidad" hidden>
+    <div class="legal-backdrop" onclick="closeLegal('privacidad')"></div>
+    <div class="legal-panel" role="dialog" aria-modal="true" aria-label="Aviso de Privacidad de IKMeds">
+      <div class="legal-head"><div class="legal-title">Aviso de Privacidad de IKMeds</div><button type="button" class="legal-close" onclick="closeLegal('privacidad')" aria-label="Cerrar">&times;</button></div>
+      <div class="legal-body"><div class="legal-sub">Última actualización: Mayo 2026 · Versión 1.0</div>
+<p>IKMeds reconoce la importancia de la privacidad y del tratamiento responsable de los datos personales. Este Aviso de Privacidad describe cómo se trata la información proporcionada por los usuarios de la plataforma, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) de México y normativa internacional aplicable.</p>
+<h4>Identificación del responsable</h4>
+<p>El responsable del tratamiento de los datos personales es Endo&amp;Laser (RFC: EMA180307EU7), con domicilio en Palmas 735, Ciudad de México, México, operando bajo la marca IKMeds y a través del producto IKMeds.</p>
+<h4>Datos personales que pueden ser tratados</h4>
+<p>IKMeds podrá tratar los siguientes datos: a) datos de identificación y contacto (nombre, correo electrónico, país); b) datos de facturación (procesados por proveedor de pagos certificado); c) datos de uso de la plataforma (consultas realizadas, créditos consumidos, fecha de acceso); d) datos clínicos no identificables ingresados por el usuario en consultas (medicamentos, anestésicos, dosis, condiciones del paciente sin identificadores); e) imágenes técnicas subidas por el usuario (fotografías de recetas, medicamentos o documentos clínicos sin identificadores del paciente); f) preferencias de marketing y comunicación; g) datos técnicos automáticos (país de acceso vía IP geo, idioma del navegador).</p>
+<h4>Datos sensibles</h4>
+<p>IKMeds no solicita ni requiere datos personales sensibles del usuario (origen racial, salud, datos biométricos, etc.). Se solicita expresamente al usuario no introducir datos identificables de pacientes (nombres, registros médicos completos, datos de contacto) en las consultas. Si el usuario ingresa información clínica, lo hará bajo su exclusiva responsabilidad y deberá contar con las autorizaciones aplicables del paciente.</p>
+<h4>Finalidades del tratamiento</h4>
+<p>Finalidades primarias (necesarias para el servicio): a) Permitir el registro, autenticación y acceso del usuario; b) Gestionar el uso de la plataforma y el sistema de créditos; c) Procesar pagos, suscripciones y recargas; d) Asociar consultas, cálculos, validaciones y resultados al usuario correspondiente; e) Mostrar respuestas, reportes y contenido dentro de la app; f) Operar, mantener, mejorar y proteger la plataforma; g) Atender solicitudes de soporte e incidencias; h) Cumplir obligaciones legales y fiscales aplicables. Finalidades secundarias (requieren consentimiento explícito): i) Envío de comunicaciones comerciales, novedades del producto y contenido educativo; j) Análisis estadístico agregado para mejorar la experiencia del usuario. El usuario podrá oponerse a las finalidades secundarias en cualquier momento sin que ello afecte el servicio principal.</p>
+<h4>Categorías de proveedores tecnológicos</h4>
+<p>Para operar IKMeds, la información se procesa mediante proveedores tecnológicos especializados, agrupados en las siguientes categorías:</p>
+<table class="legal-tbl"><thead><tr><th>Categoría de proveedor</th><th>Función</th><th>Tipo de dato compartido</th></tr></thead><tbody><tr><td>Plataforma frontend (PWA)</td><td>Interfaz de usuario y experiencia de la app</td><td>Email, nombre, créditos</td></tr><tr><td>Procesador de pagos certificado PCI-DSS</td><td>Cobros y suscripciones</td><td>Email, datos de facturación</td></tr><tr><td>Servicio de base de datos en la nube</td><td>Almacenamiento estructurado</td><td>Email, créditos, consultas</td></tr><tr><td>Proveedores de modelos de inteligencia artificial</td><td>Generación de respuestas y validaciones clínicas</td><td>Contenido de consultas</td></tr><tr><td>Plataforma de automatización backend</td><td>Orquestación de servicios y lógica operativa</td><td>Email, payload técnico</td></tr><tr><td>Servicio de hosting estático</td><td>Hospedaje del chat web</td><td>Tráfico anónimo</td></tr><tr><td>Red de distribución de contenido (CDN)</td><td>Enrutamiento y aceleración global</td><td>País de acceso (geolocalización IP)</td></tr><tr><td>Proveedor de correo empresarial</td><td>Comunicaciones y soporte</td><td>Email, contenido de la consulta de soporte</td></tr></tbody></table>
+<p>Estos proveedores tratan la información únicamente en la medida necesaria para prestar sus servicios, bajo acuerdos contractuales de confidencialidad y protección de datos. La lista detallada de subprocesadores específicos está disponible bajo solicitud por escrito a <a href="mailto:legal@laserapp.ai">legal@laserapp.ai</a>, conforme a las prácticas de la industria y para cumplir con obligaciones de confidencialidad operativa.</p>
+<h4>Conservación</h4>
+<p>La información personal se conservará durante el tiempo necesario para cumplir las finalidades descritas y obligaciones legales aplicables. Las consultas clínicas se conservarán mientras el usuario mantenga su cuenta activa. En caso de baja, los datos personales se eliminarán o anonimizarán dentro de los 90 días siguientes, salvo obligaciones legales o fiscales que requieran conservación adicional (mínimo 5 años para datos fiscales según legislación mexicana).</p>
+<h4>Seguridad</h4>
+<p>IKMeds adopta medidas técnicas, administrativas y físicas razonables para proteger la información tratada, incluyendo cifrado en tránsito (HTTPS/TLS), autenticación de acceso, almacenamiento en servicios con cifrado en reposo, y controles de acceso por roles. Sin embargo, ningún sistema es completamente infalible y no puede garantizarse seguridad absoluta.</p>
+<h4>Derechos ARCO del usuario</h4>
+<p>Conforme a la legislación mexicana aplicable, el usuario tiene derecho a: Acceso: conocer qué datos personales tenemos sobre él. Rectificación: solicitar corrección de datos inexactos o incompletos. Cancelación: solicitar la eliminación de sus datos. Oposición: oponerse al uso de sus datos para finalidades específicas. Para ejercer cualquier derecho ARCO, el usuario podrá enviar solicitud por escrito a <a href="mailto:legal@laserapp.ai">legal@laserapp.ai</a> indicando: nombre completo, email registrado, derecho que desea ejercer y descripción clara de la solicitud. Responderemos en un plazo máximo de 20 días hábiles.</p>
+<h4>Cookies y tecnologías similares</h4>
+<p>IKMeds utiliza almacenamiento local del navegador (localStorage) para mantener la sesión del usuario y preferencias de idioma. No utilizamos cookies de seguimiento publicitario de terceros.</p>
+<h4>Menores de edad</h4>
+<p>IKMeds está dirigido exclusivamente a profesionales dentales mayores de edad. No solicitamos ni tratamos conscientemente datos personales de menores.</p>
+<h4>Cambios al aviso</h4>
+<p>IKMeds podrá modificar este Aviso de Privacidad en cualquier momento. Los cambios sustanciales serán notificados a los usuarios y, cuando corresponda, requerirán nuevo consentimiento. La versión vigente estará siempre disponible dentro de la app.</p>
+<h4>Contacto y autoridad de control</h4>
+<p>Para cualquier duda relacionada con este Aviso de Privacidad o el tratamiento de datos personales: <a href="mailto:legal@laserapp.ai">legal@laserapp.ai</a>. Si el usuario considera que sus derechos han sido vulnerados, puede acudir al Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI) en México o a la autoridad de control de datos personales de su país de residencia.</p>
+<h4>Aceptación</h4>
+<p>Al marcar la casilla de aceptación, el usuario manifiesta haber leído, entendido y aceptado este Aviso de Privacidad.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Tour overlay -->
+<div class="tour-modal" id="tourModal" role="dialog" aria-modal="true" aria-label="Quick tour">
+  <button class="tour-close" onclick="closeTour()" aria-label="Close tour">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 2 L12 12 M12 2 L2 12"/></svg>
+  </button>
+  <div class="tour-frame">
+    <iframe id="tourIframe" src="about:blank" title="IKMeds"></iframe>
+  </div>
+</div>
+
+<script>
+/* ─── Tour HTML (inlined to avoid 404) ─── */
+var TOUR_B64 = "";
+var __tourSrcdoc = null;
+function tourSrcdoc(){ if(__tourSrcdoc) return __tourSrcdoc; var bin=atob(TOUR_B64); var arr=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); __tourSrcdoc=new TextDecoder().decode(arr); return __tourSrcdoc; }
+
+/* ─── Stripe links + Chat ─── */
+/* Mensuales (existentes) */
+var PRO_USD   = 'https://buy.stripe.com/dRm3cngZNdvk6DU1IHdIA0D';
+var ELITE_USD = 'https://buy.stripe.com/bJe9ALbFt3UK2nEfzxdIA0E';
+var PRO_MXN   = 'https://buy.stripe.com/6oU8wH9xl0Iyfaq5YXdIA0G';
+var ELITE_MXN = 'https://buy.stripe.com/28E6oz38Xdvkgeu1IHdIA0H';
+/* Anuales (2 meses gratis incluidos) */
+var PRO_USD_YR   = 'https://buy.stripe.com/7sY6ozdNBbncfaqfzxdIA0T';
+var PRO_MXN_YR   = 'https://buy.stripe.com/8x2fZ9cJx9f4aUa3QPdIA0U';
+var ELITE_USD_YR = 'https://buy.stripe.com/7sY8wHfVJ8b08M23QPdIA0V';
+var ELITE_MXN_YR = 'https://buy.stripe.com/28E14ffVJcrg9Q64UTdIA0W';
+/* PBM standalone (mensual + anual) */
+var PBM_USD_MO   = 'https://buy.stripe.com/6oU28jbFt8b0e6m4UTdIA0X';
+var PBM_MXN_MO   = 'https://buy.stripe.com/7sY5kv7pd76W7HY875dIA0Y';
+var PBM_USD_YR   = 'https://buy.stripe.com/eVq8wH24T62Sgeu5YXdIA0Z';
+var PBM_MXN_YR   = 'https://buy.stripe.com/aFaeV5bFtgHw2nEevtdIA10';
+var CHAT      = 'https://app.thelaser.ai';
+var IK_PACKS = {
+  mxn:{
+    initial:{price:'$100',cur:'MXN',href:'https://buy.stripe.com/dRmeV538XgHwfaq5YXdIA0x'},
+    r10:{price:'$60',cur:'MXN',href:'https://buy.stripe.com/dRm28j7pd2QG7HYcnldIA0z'},
+    r25:{price:'$125',cur:'MXN',href:'https://buy.stripe.com/8x24gr24T9f45zQ9b9dIA0B'}
+  },
+  usd:{
+    initial:{price:'$5',cur:'USD',href:'https://buy.stripe.com/6oU9AL10Pcrg8M2evtdIA0y'},
+    r10:{price:'$3',cur:'USD',href:'https://buy.stripe.com/28EfZ9bFt3UKgeu9b9dIA0A'},
+    r25:{price:'$6.25',cur:'USD',href:'https://buy.stripe.com/7sY28j10P1MC6DUevtdIA0C'}
+  }
+};
+
+/* ─── Pricing matrix (DAILY-FIRST strategy) ─── */
+/* Big number = DAILY cost. Subtitle = billing detail. interval = mo | yr */
+var PRICING = {
+  usd:{
+    sym:'$',
+    mo:{
+      free:  {day:'$0',     dayUnit:'USD / day',  bill:'$0/mo',     cap:'1 consultation'},
+      pro:   {day:'$0.33',  dayUnit:'USD / day',  bill:'$9.99/mo',  cap:'100 consultations/mo'},
+      pbm:   {day:'$0.33',  dayUnit:'USD / day',  bill:'$9.99/mo',  cap:'100 PBM consultations/mo'},
+      elite: {day:'$1',     dayUnit:'USD / day',  bill:'$29.99/mo', cap:'Unlimited consultations'}
+    },
+    yr:{
+      free:  {day:'$0',     dayUnit:'USD / day',  bill:'$0/yr',      cap:'1 consultation'},
+      pro:   {day:'$0.27',  dayUnit:'USD / day',  bill:'$99.90/yr',  cap:'100/mo · 1200/yr'},
+      pbm:   {day:'$0.27',  dayUnit:'USD / day',  bill:'$99.90/yr',  cap:'100 PBM/mo · 1200/yr'},
+      elite: {day:'$0.82',  dayUnit:'USD / day',  bill:'$299.90/yr', cap:'Unlimited consultations'}
+    }
+  },
+  mxn:{
+    sym:'$',
+    mo:{
+      free:  {day:'$0',  dayUnit:'pesos / día',     bill:'$0 MXN/mes',     cap:'1 consulta'},
+      pro:   {day:'$5',  dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas/mes'},
+      pbm:   {day:'$5',  dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas PBM/mes'},
+      elite: {day:'$15', dayUnit:'pesos / diarios', bill:'$449 MXN/mes',   cap:'Consultas ilimitadas'}
+    },
+    yr:{
+      free:  {day:'$0',  dayUnit:'pesos / día',     bill:'$0 MXN/año',      cap:'1 consulta'},
+      pro:   {day:'$4',  dayUnit:'pesos / diarios', bill:'$1,490 MXN/año',  cap:'100/mes · 1200/año'},
+      pbm:   {day:'$4',  dayUnit:'pesos / diarios', bill:'$1,490 MXN/año',  cap:'100 PBM/mes · 1200/año'},
+      elite: {day:'$12', dayUnit:'pesos / diarios', bill:'$4,490 MXN/año',  cap:'Consultas ilimitadas'}
+    }
+  }
+};
+
+
+
+
+
+
+
+
+
+/* ─── Translations ─── */
+var T = {
+  es:{
+  meta:'IA clínica de seguridad farmacológica para odontólogos. Interacciones, dosis, contraindicaciones y PBM — anclado a guías y evidencia.',
+  signin:'Iniciar sesión',
+  heroTag:'seguridad farmacológica · v2',
+  heroEye:'IA clínica · seguridad farmacológica',
+  h1a:'Seguridad farmacológica dental',
+  h1b:'sin adivinar',
+  h1c:'anclada a guías y evidencia',
+  hp:'Tu copiloto de <em>seguridad farmacológica</em> dental — interacciones, dosis de anestésicos, contraindicaciones y protocolos PBM. En la silla, en segundos. Sin manuales, sin hojas de cálculo.',
+  cta1:'Entrar a IKMeds · 1 consulta',
+  cta2:'Ver planes →',
+  tour:'Guía rápida · 60s',
+  ro:[['AHA·AAOMS·WALT','Guías clínicas'],['DCI','Marcas internacionales'],['Evidencia','Citada, no inventada'],['100%','Enfoque dental']],
+  videoEye:'Ver en 30 segundos',
+  videoH:'IKMeds en acción.',
+  videoSub:'Una consulta real, de la pregunta al reporte de seguridad.',
+  modEye:'Cuatro módulos',
+  modH:'Cada decisión clínica, su módulo.',
+  modSub:'Cada módulo resuelve una pregunta de seguridad distinta — no una IA genérica que improvisa.',
+  mods:[
+    {m:'consulta',num:'01 · CONSULTA',label:'CONSULTA',name:'Pregunta rápida',desc:'Pregunta libre sobre fármacos, dosis e interacciones. Respuesta con nivel de riesgo y evidencia citada — no una IA que inventa.',meta:'Interacciones · Dosis · Contraindicaciones'},
+    {m:'expediente',num:'02 · EXPEDIENTE',label:'EXPEDIENTE',name:'Reporte integral de seguridad',desc:'Historia, medicación, procedimiento, anestesia y receta en un reporte completo del paciente — con una decisión final clara.',meta:'Historia · Anestesia · Receta · PBM'},
+    {m:'interconsulta',num:'03 · INTERCONSULTA',label:'INTERCONSULTA',name:'Carta al médico tratante',desc:'Una carta formal de interconsulta con los datos del caso ya cargados. Lista para firmar y enviar.',meta:'Cardiología · Hematología · Endocrino'},
+    {m:'pbm',num:'04 · PBM',label:'PBM',name:'Calculadora PBM',desc:'Parámetros de fotobiomodulación por indicación — alveolitis, mucositis, parálisis facial — según tu equipo y longitud de onda.',meta:'660 · 810 · 940 · 1064 nm'}
+  ],
+  demoEye:'Demo en vivo',
+  demoH:'Una consulta real.',
+  demoSub:'Un ejemplo real: de la pregunta al manejo con evidencia citada.',
+  howEye:'Cómo se usa',
+  howH:'De la pregunta al reporte en tres pasos.',
+  howSub:'Cada caso sigue el mismo flujo. Toma segundos.',
+  howSteps:[
+    ['01','Elige módulo','Consulta, Expediente, Interconsulta o Calculadora PBM. Una decisión, no un menú.','› CONSULTA'],
+    ['02','Describe el caso','Fármaco, procedimiento y condición del paciente — en lenguaje natural o con un toque.','› WARFARINA + EXODONCIA'],
+    ['03','Recibe el reporte','Nivel de riesgo, manejo y evidencia citada — listo para tu expediente.','› [ALTO RIESGO]']
+  ],
+  howTourEye:'Guía rápida · 60 s',
+  howTourH:'¿Prefieres verlo en movimiento? Tour interactivo (próximamente).',
+  howTourBtn:'Guía rápida (pronto)',
+  howTourMeta:['INTERACTIVO','PRÓXIMAMENTE'],
+  demoCrumb:'CONSULTA · Warfarina',
+  demoStatus:'READY',
+  demoUser:'Paciente con warfarina va a exodoncia. ¿Qué debo considerar?',
+  demoTag:'CONSULTA · WARFARINA · EXODONCIA',
+  demoIntro:'Riesgo de sangrado. Manejo perioperatorio y hemostasia local.',
+  demoCheck:'↗ Reporte completo con evidencia en Expediente',
+  demoPh:'Pregunta tu caso clínico…',
+  demoSend:'Enviar',
+  prEye:'Precios por uso',
+  prH:'Pagas por usar la herramienta, no una mensualidad',
+  prSub:'IKMeds no es una suscripción. Te inscribes una sola vez y después recargas consultas solo cuando las necesitas. El cobro cubre el uso de las herramientas de IA, las búsquedas y la infraestructura detrás de cada consulta — no es un negocio, es lo que cuesta operarlo.',
+  curMx:'México · MXN',
+  curUs:'Internacional · USD',
+  intMo:'Mensual',
+  intYr:'Anual',
+  intSave:'2 MESES GRATIS',
+  savingsLabel:'2 meses gratis incluidos',
+  notePbm:'La inscripción es un único pago inicial. Después solo recargas cuando se te acaban las consultas — pagas por lo que usas. Lo que cobramos cubre el uso de las herramientas (IA, búsquedas, infraestructura); IKMeds no genera ganancia con esto.',
+  plans:[],
+  prDay:'/diarios',
+  prFact:'Facturado',
+  teEye:'Testimonios',
+  teH:'Confiado por profesionales de la odontología.',
+  testis:[],
+  ctaEye:'Empieza hoy',
+  ctaH:'Lleva la seguridad farmacológica a tu sillón.',
+  ctaP:'Regístrate con Google y resuelve tu primer caso en minutos.',
+  ctaBtn:'Entrar a IKMeds',
+  ctaTour:'Ver guía rápida',
+  ctaFine:'Acceso con Google · Sin suscripción — pagas por consultas',
+  cEye:'Contáctanos',
+  cH:'¿Tienes dudas? Contáctanos.',
+  cSub:'Respondemos por email en menos de 24 horas. Cuéntanos de tu práctica y cómo te gustaría usar IKMeds.',
+  cName:'Nombre',cEmail:'Email',cWA:'WhatsApp',cOpt:'(opcional, recomendado)',cClin:'Clínica / Especialidad',cEsp:'Especialidad o tipo de práctica',cEspPh:'Ej. Odontología general · Endodoncia',cMsg:'Mensaje',cSend:'Enviar mensaje',cSending:'Enviando…',cOk:'✓ Mensaje enviado. Te respondemos pronto.',cErr:'No se pudo enviar. Intenta de nuevo o escríbenos por WhatsApp.',cFine:'Tus datos no se comparten · Solo respondemos tu mensaje',cSubj:'Nuevo contacto desde IKMeds Landing',cOpen:'Abrir formulario de contacto',cClose:'Cerrar formulario',
+  footTag:'IA Clínica · Seguridad farmacológica',
+  footCopy:'© 2026 IKMeds'
+}
+};
+
+var lang='es';
+var currency='mxn';
+var interval='yr';  /* default anual (incita al pago anual con 2 meses gratis) */
+
+function setL(l){
+  lang=l;
+  try{localStorage.setItem('ikmeds_lang',l);}catch(e){}
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.toggle('on',b.dataset.l===l);});
+  document.documentElement.lang=l;
+  render();
+}
+
+
+function openLegal(id){var m=document.getElementById('legal-'+id);if(m){m.hidden=false;document.body.style.overflow='hidden';}}
+function closeLegal(id){var m=document.getElementById('legal-'+id);if(m){m.hidden=true;document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeLegal('terminos');closeLegal('privacidad');}});
+
+function setCurrency(c){
+  currency=c;
+  document.querySelectorAll('.cur-btn').forEach(function(b){b.classList.toggle('on',b.dataset.c===c);});
+  renderPlans();
+}
+
+function setPeriod(i){
+  interval=i;
+  document.querySelectorAll('.int-btn').forEach(function(b){b.classList.toggle('on',b.dataset.i===i);});
+  renderPlans();
+}
+
+function planHref(key){
+  if(key==='pro'){
+    if(interval==='yr') return currency==='mxn'?PRO_MXN_YR:PRO_USD_YR;
+    return currency==='mxn'?PRO_MXN:PRO_USD;
+  }
+  if(key==='elite'){
+    if(interval==='yr') return currency==='mxn'?ELITE_MXN_YR:ELITE_USD_YR;
+    return currency==='mxn'?ELITE_MXN:ELITE_USD;
+  }
+  if(key==='pbm'){
+    if(interval==='yr') return currency==='mxn'?PBM_MXN_YR:PBM_USD_YR;
+    return currency==='mxn'?PBM_MXN_MO:PBM_USD_MO;
+  }
+  return CHAT;
+}
+
+function renderPlans(){
+  var grid=document.getElementById('plansGrid');
+  if(!grid) return;
+  var t=T[lang];
+  var p=IK_PACKS[currency];
+  grid.innerHTML=
+    '<div class="ik-enroll">'
+    + '<div class="ik-enroll-tag">Pago único · una sola vez</div>'
+    + '<div class="ik-enroll-body">'
+    +   '<div class="ik-enroll-info">'
+    +     '<div class="ik-enroll-name">Inscripción inicial</div>'
+    +     '<div class="ik-enroll-inc">Incluye 10 consultas para empezar</div>'
+    +     '<div class="ik-enroll-note">Se paga una sola y única vez. No es mensualidad ni suscripción.</div>'
+    +   '</div>'
+    +   '<div class="ik-enroll-buy">'
+    +     '<div class="ik-price"><span class="ik-cur-sym">'+p.initial.price+'</span> <span class="ik-cur-cod">'+p.initial.cur+'</span></div>'
+    +     '<a class="ik-cta" href="'+p.initial.href+'" target="_blank" rel="noopener">Empezar</a>'
+    +   '</div>'
+    + '</div>'
+    + '</div>'
+    + '<div class="ik-sep"><span></span><div>Cuando se te acaben, recarga — pagas solo por lo que usas</div><span></span></div>'
+    + '<div class="ik-recargas">'
+    +   '<div class="ik-card">'
+    +     '<div class="ik-card-tag">Recarga</div>'
+    +     '<div class="ik-card-name">10 consultas</div>'
+    +     '<div class="ik-price"><span class="ik-cur-sym">'+p.r10.price+'</span> <span class="ik-cur-cod">'+p.r10.cur+'</span></div>'
+    +     '<a class="ik-cta ik-cta-ghost" href="'+p.r10.href+'" target="_blank" rel="noopener">Recargar 10</a>'
+    +   '</div>'
+    +   '<div class="ik-card ik-card-best">'
+    +     '<div class="ik-card-badge">Recomendado</div>'
+    +     '<div class="ik-card-tag">Recarga</div>'
+    +     '<div class="ik-card-name">25 consultas</div>'
+    +     '<div class="ik-price"><span class="ik-cur-sym">'+p.r25.price+'</span> <span class="ik-cur-cod">'+p.r25.cur+'</span></div>'
+    +     '<a class="ik-cta" href="'+p.r25.href+'" target="_blank" rel="noopener">Recargar 25</a>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="ik-note">'+t.notePbm+'</div>';
+}
+
+function render(){
+  var t=T[lang];
+  document.getElementById('meta-desc').content=t.meta;
+  document.getElementById('og-desc').content=t.meta;
+  document.querySelector('.signin').textContent=t.signin;
+  document.getElementById('footTag').textContent=t.footTag;
+  document.getElementById('footCopy').textContent=t.footCopy;
+
+  var mods=t.mods.map(function(m){
+    return '<div class="mod" data-m="'+m.m+'">'
+      + '<div class="mod-num"><span>'+m.num+'</span><span class="label">'+m.label+'</span></div>'
+      + '<div class="mod-name">'+m.name+'</div>'
+      + '<div class="mod-desc">'+m.desc+'</div>'
+      + '<div class="mod-meta">'+m.meta+'</div>'
+      + '</div>';
+  }).join('');
+
+  var ros=t.ro.map(function(s){
+    return '<div class="ro"><div class="ro-num">'+s[0]+'</div><div class="ro-lbl">'+s[1]+'</div></div>';
+  }).join('');
+
+  var hsteps=t.howSteps.map(function(s){
+    return '<div class="how-step">'
+      + '<div class="num"><span class="big">'+s[0]+'</span>STEP</div>'
+      + '<h4>'+s[1]+'</h4>'
+      + '<p>'+s[2]+'</p>'
+      + '<div class="ex">'+s[3]+'</div>'
+      + '</div>';
+  }).join('');
+
+  var testis=t.testis.map(function(x){
+    return '<div class="tc">'
+      + '<div class="stars">★★★★★</div>'
+      + '<p>"'+x[0]+'"</p>'
+      + '<div class="tauth"><div class="av">'+x[3]+'</div><div><div class="aname">'+x[1]+'</div><div class="arole">'+x[2]+'</div></div></div>'
+      + '</div>';
+  }).join('');
+
+  var html=''
+  + '<section id="top" style="padding-top:0">'
+  +   '<div class="hero">'
+  +     '<div class="hero-grid"></div>'
+  +     '<div class="hero-tag"><span class="dot"></span><span>'+t.heroTag+'</span></div>'
+  +     '<div class="hero-eyebrow">'+t.heroEye+'</div>'
+  +     '<h1>'+t.h1a+' <span class="accent">'+t.h1b+'</span><br><span class="pin">'+t.h1c+'</span></h1>'
+  +     '<p class="hero-sub">'+t.hp+'</p>'
+  +     '<div class="hero-cta-row">'
+  +       '<a class="btn btn-primary" href="'+CHAT+'" target="_blank" rel="noopener">'+t.cta1+'</a>'
+  +       '<a class="btn btn-ghost-light" href="#pricing">'+t.cta2+'</a>'
+  +       '<button class="btn-tour" onclick="openTour()" type="button"><span class="play"><svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor"><polygon points="2,1 7.5,4.5 2,8"/></svg></span>'+t.tour+'</button>'
+  +     '</div>'
+  +     '<div class="readouts">'+ros+'</div>'
+  +   '</div>'
+  + '</section>'
+
+  + '<section id="video">'
+  +   '<div class="sec-head">'
+  +     '<div class="sec-eye">'+t.videoEye+'</div>'
+  +     '<div class="sec-h">'+t.videoH+'</div>'
+  +     '<div class="sec-sub">'+t.videoSub+'</div>'
+  +   '</div>'
+  +   '<div class="video-frame">'
+  +     '<div class="video-corner tl"></div>'
+  +     '<div class="video-corner tr"></div>'
+  +     '<div class="video-corner bl"></div>'
+  +     '<div class="video-corner br"></div>'
+  +     '<div class="video-bar">'
+  +       '<div class="video-bar-left">'
+  +         '<span class="video-bar-dot"></span>'
+  +         '<span class="video-bar-tag">IKMEDS · DEMO</span>'
+  +         '<span class="video-bar-pipe video-bar-tag-hide-mobile">|</span>'
+  +         '<span class="video-bar-tag-hide-mobile">ES · próximamente</span>'
+  +       '</div>'
+  +       '<div>00:30</div>'
+  +     '</div>'
+  +     '<div class="video-aspect">'
+  +       '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--cream);font-family:var(--mono);font-size:13px;letter-spacing:0.08em;">DEMO EN VIDEO · PRÓXIMAMENTE</div>'
+  +     '</div>'
+  +   '</div>'
+  + '</section>'
+
+  + '<section id="modules">'
+  +   '<div class="sec-head">'
+  +     '<div class="sec-eye">'+t.modEye+'</div>'
+  +     '<div class="sec-h">'+t.modH+'</div>'
+  +     '<div class="sec-sub">'+t.modSub+'</div>'
+  +   '</div>'
+  +   '<div class="mods">'+mods+'</div>'
+  + '</section>'
+
+  + '<section id="how">'
+  +   '<div class="sec-head">'
+  +     '<div class="sec-eye">'+t.howEye+'</div>'
+  +     '<div class="sec-h">'+t.howH+'</div>'
+  +     '<div class="sec-sub">'+t.howSub+'</div>'
+  +   '</div>'
+  +   '<div class="how-steps">'+hsteps+'</div>'
+  +   '<div class="tour-panel">'
+  +     '<div class="tour-panel-left">'
+  +       '<div class="tour-panel-eye">'+t.howTourEye+'</div>'
+  +       '<h3>'+t.howTourH+'</h3>'
+  +       '<div class="tour-panel-meta">'
+  +         '<span><span class="pip"></span>'+t.howTourMeta[0]+'</span>'
+  +         '<span>'+t.howTourMeta[1]+'</span>'
+  +         '<span>'+t.howTourMeta[2]+'</span>'
+  +       '</div>'
+  +     '</div>'
+  +     '<button class="tour-launch" onclick="openTour()" type="button">'
+  +       '<span class="play-circle"><svg width="11" height="11" viewBox="0 0 11 11" fill="currentColor"><polygon points="2.5,1.5 9,5.5 2.5,9.5"/></svg></span>'
+  +       t.howTourBtn
+  +     '</button>'
+  +   '</div>'
+  + '</section>'
+
+  + '<section id="demo">'
+  +   '<div class="sec-head">'
+  +     '<div class="sec-eye">'+t.demoEye+'</div>'
+  +     '<div class="sec-h">'+t.demoH+'</div>'
+  +     '<div class="sec-sub">'+t.demoSub+'</div>'
+  +   '</div>'
+  +   '<div class="demo-wrap">'
+  +     '<div class="demo-top">'
+  +       '<div class="mark">iK</div>'
+  +       '<div><div class="name">IKMeds</div></div>'
+  +       '<div class="crumb">'+t.demoCrumb+'</div>'
+  +       '<div class="right"><span class="led"></span><span>'+t.demoStatus+'</span></div>'
+  +     '</div>'
+  +     '<div class="demo-body">'
+  +       '<div class="msg u"><div class="bbl">'+t.demoUser+'</div></div>'
+  +       '<div class="msg a"><div class="bbl">'
+  +         '<span class="ptag">'+t.demoTag+'</span>'
+  +         t.demoIntro
+  +         '<span class="lcd">'
+  +           '<span class="k">INR </span><span class="am">verificar &lt;72 h</span>  <span class="k">SUSPENDER </span><span class="v">no sin aval médico</span><br>'
+  +           '<span class="k">HEMOSTASIA </span><span class="v">esponja + sutura</span>  <span class="k">TÓPICO </span><span class="v">ác. tranexámico</span><br>'
+  +           '<span class="k">ANALGESIA </span><span class="v">paracetamol</span>  <span class="k">EVITAR </span><span class="v">AINEs</span>'
+  +         '</span>'
+  +         '<span class="uphint">'+t.demoCheck+'</span>'
+  +       '</div></div>'
+  +     '</div>'
+  +     '<div class="demo-foot">'
+  +       '<div class="demo-input">'+t.demoPh+'</div>'
+  +       '<button class="demo-send" onclick="window.open(\''+CHAT+'\',\'_blank\')">'+t.demoSend+'</button>'
+  +     '</div>'
+  +   '</div>'
+  + '</section>'
+
+  + '<section id="pricing">'
+  +   '<div class="sec-head">'
+  +     '<div class="sec-eye">'+t.prEye+'</div>'
+  +     '<div class="sec-h">'+t.prH+'</div>'
+  +     '<div class="sec-sub">'+t.prSub+'</div>'
+  +   '</div>'
+  +   '<div class="ik-cur-toggle">'
+  +     '<button class="ik-cur'+(currency==='mxn'?' on':'')+'" data-c="mxn" onclick="setCurrency(\'mxn\')">MXN</button>'
+  +     '<button class="ik-cur'+(currency==='usd'?' on':'')+'" data-c="usd" onclick="setCurrency(\'usd\')">USD</button>'
+  +   '</div>'
+  +   '<div class="ik-pricing" id="plansGrid"></div>'
+  + '</section>'
+
+
+
+  + '<section>'
+  +   '<div class="cta">'
+  +     '<div class="cta-grid"></div>'
+  +     '<div class="cta-eye">'+t.ctaEye+'</div>'
+  +     '<h2>'+t.ctaH+'</h2>'
+  +     '<p class="cta-sub">'+t.ctaP+'</p>'
+  +     '<div class="cta-row">'
+  +       '<a class="btn btn-primary" href="'+CHAT+'" target="_blank" rel="noopener">'+t.ctaBtn+'</a>'
+  +       '<button class="btn btn-ghost-light" onclick="openTour()" type="button">'+t.ctaTour+' →</button>'
+  +     '</div>'
+  +     '<div class="cta-fine">'+t.ctaFine+'</div>'
+  +   '</div>'
+  + '</section>'
+
+  + '<section id="contact">'
+  +   '<div class="contact">'
+  +     '<div class="contact-head">'
+  +       '<div class="sec-eye">'+t.cEye+'</div>'
+  +       '<h2>'+t.cH+'</h2>'
+  +       '<p class="contact-sub">'+t.cSub+'</p>'
+  +     '</div>'
+  +     '<button type="button" class="contact-toggle" id="cToggle" aria-expanded="false" aria-controls="cFormWrap" onclick="toggleContact()">'
+  +       '<span class="ct-label">'+t.cOpen+'</span>'
+  +       '<span class="ct-chev" aria-hidden="true">+</span>'
+  +     '</button>'
+  +     '<div class="contact-form-wrap" id="cFormWrap" hidden>'
+  +     '<form class="contact-form" onsubmit="submitContact(event)" novalidate>'
+  +       '<input type="hidden" name="access_key" value="fd58b09f-4472-4d12-b855-f7e4c3496164">'
+  +       '<input type="hidden" name="subject" value="'+t.cSubj+'">'
+  +       '<input type="hidden" name="from_name" value="IKMeds Landing">'
+  +       '<input type="checkbox" name="botcheck" style="display:none">'
+  +       '<div class="cf-grid">'
+  +         '<label class="cf-field"><span class="cf-lbl">'+t.cName+'</span><input type="text" name="name" required></label>'
+  +         '<label class="cf-field"><span class="cf-lbl">'+t.cEmail+'</span><input type="email" name="email" required></label>'
+  +         '<label class="cf-field"><span class="cf-lbl">'+t.cWA+' <span class="cf-opt">'+t.cOpt+'</span></span><input type="tel" name="whatsapp"></label>'
+  +         '<label class="cf-field"><span class="cf-lbl">'+t.cClin+'</span><input type="text" name="clinic_specialty" required></label>'
+  +         '<label class="cf-field cf-full"><span class="cf-lbl">'+t.cEsp+'</span><input type="text" name="especialidad" placeholder="'+t.cEspPh+'"></label>'
+  +         '<label class="cf-field cf-full"><span class="cf-lbl">'+t.cMsg+'</span><textarea name="message" rows="4" required></textarea></label>'
+  +       '</div>'
+  +       '<div class="cf-actions">'
+  +         '<button type="submit" class="btn btn-primary cf-submit">'+t.cSend+'</button>'
+  +         '<span class="cf-status" id="cfStatus"></span>'
+  +       '</div>'
+  +       '<div class="cf-fine">'+t.cFine+'</div>'
+  +     '</form>'
+  +     '</div>'
+  +   '</div>'
+  + '</section>';
+
+  document.getElementById('app').innerHTML=html;
+  renderPlans();
+}
+
+/* ─── Tour ─── */
+function toggleContact(){
+  var wrap=document.getElementById('cFormWrap');
+  var btn=document.getElementById('cToggle');
+  if(!wrap||!btn) return;
+  var open=wrap.hasAttribute('hidden')?true:false;
+  if(open){
+    wrap.removeAttribute('hidden');
+    btn.setAttribute('aria-expanded','true');
+    btn.classList.add('on');
+    btn.querySelector('.ct-label').textContent=T[lang].cClose;
+    btn.querySelector('.ct-chev').textContent='\u2212';
+  } else {
+    wrap.setAttribute('hidden','');
+    btn.setAttribute('aria-expanded','false');
+    btn.classList.remove('on');
+    btn.querySelector('.ct-label').textContent=T[lang].cOpen;
+    btn.querySelector('.ct-chev').textContent='+';
+  }
+}
+
+function submitContact(e){
+  e.preventDefault();
+  var t=T[lang];
+  var form=e.target;
+  var btn=form.querySelector('.cf-submit');
+  var status=document.getElementById('cfStatus');
+  status.textContent=''; status.className='cf-status';
+  var orig=btn.textContent;
+  btn.disabled=true; btn.textContent=t.cSending;
+  var fd=new FormData(form);
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:fd})
+    .then(function(r){return r.json().catch(function(){return {success:false};});})
+    .then(function(data){
+      if(data && data.success){
+        status.className='cf-status ok';
+        status.textContent=t.cOk;
+        form.reset();
+      } else {
+        status.className='cf-status err';
+        status.textContent=t.cErr;
+      }
+    })
+    .catch(function(){
+      status.className='cf-status err';
+      status.textContent=t.cErr;
+    })
+    .then(function(){
+      btn.disabled=false; btn.textContent=orig;
+    });
+}
+
+function openTour(){
+  var ifr=document.getElementById('tourIframe');
+  var html=tourSrcdoc();
+  // Inject lang param into the tour by setting localStorage hint before load
+  try{localStorage.setItem('ikmeds_lang',lang);}catch(e){}
+  ifr.removeAttribute('src');
+  ifr.srcdoc=html;
+  document.getElementById('tourModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeTour(){
+  document.getElementById('tourModal').classList.remove('open');
+  document.body.style.overflow='';
+  var _i=document.getElementById('tourIframe'); _i.removeAttribute('srcdoc'); _i.src='about:blank';
+}
+document.getElementById('tourModal').addEventListener('click',function(e){
+  if(e.target===this) closeTour();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeTour();
+});
+
+/* boot */
+render();
+</script>
+</body>
+</html>
