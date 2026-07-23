@@ -927,22 +927,7 @@ var TOUR_B64 = "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVzIj4KPGhlYWQ+CjxtZXRhIGNo
 var __tourSrcdoc = null;
 function tourSrcdoc(){ if(__tourSrcdoc) return __tourSrcdoc; var bin=atob(TOUR_B64); var arr=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); __tourSrcdoc=new TextDecoder().decode(arr); return __tourSrcdoc; }
 
-/* ─── Stripe links + Chat ─── */
-/* Mensuales (existentes) */
-var PRO_USD   = 'https://buy.stripe.com/dRm3cngZNdvk6DU1IHdIA0D';
-var ELITE_USD = 'https://buy.stripe.com/bJe9ALbFt3UK2nEfzxdIA0E';
-var PRO_MXN   = 'https://buy.stripe.com/6oU8wH9xl0Iyfaq5YXdIA0G';
-var ELITE_MXN = 'https://buy.stripe.com/28E6oz38Xdvkgeu1IHdIA0H';
-/* Anuales (2 meses gratis incluidos) */
-var PRO_USD_YR   = 'https://buy.stripe.com/7sY6ozdNBbncfaqfzxdIA0T';
-var PRO_MXN_YR   = 'https://buy.stripe.com/8x2fZ9cJx9f4aUa3QPdIA0U';
-var ELITE_USD_YR = 'https://buy.stripe.com/7sY8wHfVJ8b08M23QPdIA0V';
-var ELITE_MXN_YR = 'https://buy.stripe.com/28E14ffVJcrg9Q64UTdIA0W';
-/* PBM standalone (mensual + anual) */
-var PBM_USD_MO   = 'https://buy.stripe.com/6oU28jbFt8b0e6m4UTdIA0X';
-var PBM_MXN_MO   = 'https://buy.stripe.com/7sY5kv7pd76W7HY875dIA0Y';
-var PBM_USD_YR   = 'https://buy.stripe.com/eVq8wH24T62Sgeu5YXdIA0Z';
-var PBM_MXN_YR   = 'https://buy.stripe.com/aFaeV5bFtgHw2nEevtdIA10';
+/* ─── Stripe links (pago por uso) + Chat ─── */
 var CHAT      = 'https://app.thelaser.ai';
 var IK_PACKS = {
   mxn:{
@@ -956,49 +941,6 @@ var IK_PACKS = {
     r25:{price:'$23',cur:'USD',href:'https://buy.stripe.com/6oU4gr8th4YO2nEdrpdIA19'}
   }
 };
-
-/* ─── Pricing matrix (DAILY-FIRST strategy) ─── */
-/* Big number = DAILY cost. Subtitle = billing detail. interval = mo | yr */
-var PRICING = {
-  usd:{
-    sym:'$',
-    mo:{
-      free:  {day:'$0',     dayUnit:'USD / day',  bill:'$0/mo',     cap:'1 consultation'},
-      pro:   {day:'$0.33',  dayUnit:'USD / day',  bill:'$9.99/mo',  cap:'100 consultations/mo'},
-      pbm:   {day:'$0.33',  dayUnit:'USD / day',  bill:'$9.99/mo',  cap:'100 PBM consultations/mo'},
-      elite: {day:'$1',     dayUnit:'USD / day',  bill:'$29.99/mo', cap:'Unlimited consultations'}
-    },
-    yr:{
-      free:  {day:'$0',     dayUnit:'USD / day',  bill:'$0/yr',      cap:'1 consultation'},
-      pro:   {day:'$0.27',  dayUnit:'USD / day',  bill:'$99.90/yr',  cap:'100/mo · 1200/yr'},
-      pbm:   {day:'$0.27',  dayUnit:'USD / day',  bill:'$99.90/yr',  cap:'100 PBM/mo · 1200/yr'},
-      elite: {day:'$0.82',  dayUnit:'USD / day',  bill:'$299.90/yr', cap:'Unlimited consultations'}
-    }
-  },
-  mxn:{
-    sym:'$',
-    mo:{
-      free:  {day:'$0',  dayUnit:'pesos / día',     bill:'$0 MXN/mes',     cap:'1 consulta'},
-      pro:   {day:'$5',  dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas/mes'},
-      pbm:   {day:'$5',  dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas PBM/mes'},
-      elite: {day:'$15', dayUnit:'pesos / diarios', bill:'$449 MXN/mes',   cap:'Consultas ilimitadas'}
-    },
-    yr:{
-      free:  {day:'$0',  dayUnit:'pesos / día',     bill:'$0 MXN/año',      cap:'1 consulta'},
-      pro:   {day:'$4',  dayUnit:'pesos / diarios', bill:'$1,490 MXN/año',  cap:'100/mes · 1200/año'},
-      pbm:   {day:'$4',  dayUnit:'pesos / diarios', bill:'$1,490 MXN/año',  cap:'100 PBM/mes · 1200/año'},
-      elite: {day:'$12', dayUnit:'pesos / diarios', bill:'$4,490 MXN/año',  cap:'Consultas ilimitadas'}
-    }
-  }
-};
-
-
-
-
-
-
-
-
 
 /* ─── Translations ─── */
 var T = {
@@ -1082,7 +1024,6 @@ var T = {
 
 var lang='es';
 var currency='mxn';
-var interval='yr';  /* default anual (incita al pago anual con 2 meses gratis) */
 
 function setL(l){
   lang=l;
@@ -1101,28 +1042,6 @@ function setCurrency(c){
   currency=c;
   document.querySelectorAll('.cur-btn').forEach(function(b){b.classList.toggle('on',b.dataset.c===c);});
   renderPlans();
-}
-
-function setPeriod(i){
-  interval=i;
-  document.querySelectorAll('.int-btn').forEach(function(b){b.classList.toggle('on',b.dataset.i===i);});
-  renderPlans();
-}
-
-function planHref(key){
-  if(key==='pro'){
-    if(interval==='yr') return currency==='mxn'?PRO_MXN_YR:PRO_USD_YR;
-    return currency==='mxn'?PRO_MXN:PRO_USD;
-  }
-  if(key==='elite'){
-    if(interval==='yr') return currency==='mxn'?ELITE_MXN_YR:ELITE_USD_YR;
-    return currency==='mxn'?ELITE_MXN:ELITE_USD;
-  }
-  if(key==='pbm'){
-    if(interval==='yr') return currency==='mxn'?PBM_MXN_YR:PBM_USD_YR;
-    return currency==='mxn'?PBM_MXN_MO:PBM_USD_MO;
-  }
-  return CHAT;
 }
 
 function renderPlans(){
